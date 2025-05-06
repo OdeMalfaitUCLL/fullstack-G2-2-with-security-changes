@@ -52,10 +52,11 @@ const taskhistoryRouter = express.Router();
 taskhistoryRouter.get('/finished', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const request = req as Request & { auth: { username: string; role: Role } };
-        const { username,role } = request.auth;
-        const allFinishedTasks = await taskhistoryService.getAllFinishedTasksByUser(
-        {username,role}
-        );
+        const { username, role } = request.auth;
+        const allFinishedTasks = await taskhistoryService.getAllFinishedTasksByUser({
+            username,
+            role,
+        });
         res.status(200).json(allFinishedTasks);
     } catch (error) {
         next(error);
@@ -94,11 +95,11 @@ taskhistoryRouter.get(
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const request = req as Request & { auth: { username: string; role: Role } };
-            const { username,role } = request.auth;
+            const { username, role } = request.auth;
             const finishTask = await taskhistoryService.addFinishedTaskToHistoryByUser(
                 Number(req.params.userId),
                 Number(req.params.taskId),
-                {username,role}
+                { username, role }
             );
             res.status(200).json(finishTask);
         } catch (error) {

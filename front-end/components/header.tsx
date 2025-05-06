@@ -57,6 +57,12 @@ const Header: React.FC = () => {
               >
                 {t("header.nav.tasks")}
               </Link>
+              <Link
+                href="/profile"
+                className="nav-link p-2 fs-6 text-dark  m-1 rounded-md hover:bg-[#d8cfc4]"
+              >
+                {t("header.nav.profile")}
+              </Link>
               <div className="nav-link p-2  fs-6 mt-1 ml-6 text-[#534e46] italic">
                 {t("header.welcome")}, {loggedInUser.role}{" "}
                 {loggedInUser.username}!

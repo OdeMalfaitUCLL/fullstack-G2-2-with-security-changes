@@ -1,8 +1,6 @@
 import { Priority } from './priority';
 import { User } from './user';
-import { Task as TaskPrisma,
-     Priority as PriorityPrisma,
-    User as UserPrisma  } from '@prisma/client';
+import { Task as TaskPrisma, Priority as PriorityPrisma, User as UserPrisma } from '@prisma/client';
 
 export class Task {
     private id?: number;
@@ -86,18 +84,30 @@ export class Task {
     }
 
     equals(task: Task): boolean {
-        return this.id === task.getId() &&
-        this.description === task.getDescription() &&
-        this.sidenote === task.getSidenote() &&
-        this.startDate === task.getStartDate() &&
-        this.endDate === task.getEndDate() &&
-        this.deadline === task.getDeadline() &&
-        this.done === task.getDone() &&
-        this.priority.equals(task.getPriority()) &&
-        this.user.equals(task.getUser());
+        return (
+            this.id === task.getId() &&
+            this.description === task.getDescription() &&
+            this.sidenote === task.getSidenote() &&
+            this.startDate === task.getStartDate() &&
+            this.endDate === task.getEndDate() &&
+            this.deadline === task.getDeadline() &&
+            this.done === task.getDone() &&
+            this.priority.equals(task.getPriority()) &&
+            this.user.equals(task.getUser())
+        );
     }
 
-    static from({ id, description, sidenote, startDate, endDate, deadline, done, priority, user }: TaskPrisma & {priority: PriorityPrisma, user: UserPrisma}) {
+    static from({
+        id,
+        description,
+        sidenote,
+        startDate,
+        endDate,
+        deadline,
+        done,
+        priority,
+        user,
+    }: TaskPrisma & { priority: PriorityPrisma; user: UserPrisma }) {
         return new Task({
             id,
             description,

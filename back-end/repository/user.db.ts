@@ -94,10 +94,35 @@ const createUser = async (user: User): Promise<User> => {
         throw new Error('Database error. See server log for details.');
     }
 };
+const deleteUser = async (id: number): Promise<void> => {
+    try {
+        const userPrisma = await database.user.delete({
+            where: { id },
+        });
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
+const updatePassword = async (userId: number, newPassword: string) => {
+    try {
+        const userPrisma = await database.user.update({
+            where: { id: userId },
+            data: {
+                password: newPassword,
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
 
 export default {
     getAllUsers,
     getUserById,
     createUser,
     getUserByUserName,
+    deleteUser,
+    updatePassword,
 };

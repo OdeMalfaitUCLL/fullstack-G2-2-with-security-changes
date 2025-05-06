@@ -6,6 +6,7 @@ import { generateJwtToken } from '../util/jwt';
 import { UnauthorizedError } from 'express-jwt';
 import { TaskHistory } from '../model/taskhistory';
 import taskhistoryDb from '../repository/taskhistory.db';
+import taskhistoryService from './taskhistory.service';
 
 const getUsers = async ({ username, role }: any): Promise<User[]> => {
     if (role === 'admin') {
@@ -66,5 +67,59 @@ const userExists = async (username: string): Promise<boolean> => {
         return true;
     }
 };
+const deleteUser = async (userId: number, { username, role }: any): Promise<boolean> => {
+    const user = await userDb.getUserByUserName(username);
+    if (role === 'guest' || role === 'user') {
+        throw new UnauthorizedError('credentials_required', {
+            message: 'you are not authorized to access this resource.',
+        });
+    } else if (user && role === 'admin') {
+        const deletedUser = await getUserById(userId);
+        if (!deletedUser) {
+            throw new Error(`No user found with id: ${userId}`);
+        } else {
+            await taskhistoryService.deleteTaskHistoryFromUser(
+                deletedUser.getUsername(),
+                deletedUser.getRole()
+            );
+            await userDb.deleteUser(userId);
+            return true;
+        }
+    }
+    return false;
+};
 
-export default { getUsers, getAllUsers, getUserById, createUser, authenticate, userExists };
+const updatePassword = async (
+    oldPassword: string,
+    newPassword: string,
+    { username, role }: any
+) => {
+    let result = false;
+    if (oldPassword?.trim() === '' || newPassword?.trim() === '') {
+        throw new Error('Current password and new password are required');
+    }
+    const existingUser = await userDb.getUserByUserName(username);
+    if (!existingUser) {
+        throw new Error(`User with username ${username} does not exist`);
+    }
+    const invalidOldPassword = await bcrypt.compare(oldPassword, existingUser.getPassword());
+    if (!invalidOldPassword) {
+        throw new Error('Password is not correct.');
+    } else {
+        const hashedNewPassword = await bcrypt.hash(newPassword, 12);
+        await userDb.updatePassword(Number(existingUser.getId()), hashedNewPassword);
+        result = true;
+    }
+    return result;
+};
+
+export default {
+    getUsers,
+    getAllUsers,
+    getUserById,
+    createUser,
+    authenticate,
+    userExists,
+    deleteUser,
+    updatePassword,
+};

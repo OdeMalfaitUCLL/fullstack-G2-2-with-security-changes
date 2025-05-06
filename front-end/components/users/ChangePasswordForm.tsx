@@ -1,69 +1,55 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { StatusMessage } from "../../types";
 import classNames from "classnames";
 import UserService from "../../services/UserService";
-import { useTranslation } from "next-i18next";
-const UserLoginFrom: React.FC = () => {
+import { useRouter } from "next/router";
+
+const ChangePasswordForm: React.FC = () => {
   const router = useRouter();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [nameError, setNameError] = useState<string | null>(null);
+  const [oldPassword, setOldPassword] = useState<string>("");
+  const [newPassword, setNewPassword] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState<StatusMessage[]>([]);
-  const { t } = useTranslation();
-
   const clearErrors = () => {
-    setNameError("");
     setPasswordError("");
     setStatusMessage([]);
   };
   const validate = (): boolean => {
     let result = true;
-    if (!username && username.trim() === "") {
-      setNameError(t("login.validate.usernameError"));
+    if (!oldPassword || oldPassword.trim() === "") {
+      setPasswordError("Current Password is required");
       result = false;
-    }
-    if (!password && password.trim() === "") {
-      setPasswordError(t("login.validate.passwordError"));
+    } else if (!newPassword || newPassword.trim() === "") {
+      setPasswordError("New Password is required");
       result = false;
     }
     return result;
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     clearErrors();
     if (!validate()) {
       return;
     }
-    const user = { username, password };
-    const response = await UserService.loginUser(user);
+    const response = await UserService.updatePassword(oldPassword, newPassword);
     if (response && response.status === 200) {
-      const user = await response.json();
-      localStorage.setItem(
-        "loggedInUser",
-        JSON.stringify({
-          token: user.token,
-          username: user.username,
-          role: user.role,
-        })
-      );
-      sessionStorage.setItem("loggedInUser", username);
       setStatusMessage([
         {
-          message: t("login.success"),
+          message: response.message,
           type: "success",
         },
       ]);
       setTimeout(() => {
-        router.push("/");
+        setStatusMessage([]);
+        sessionStorage.removeItem("loggedInUser");
+        localStorage.removeItem("loggedInUser");
+        router.push("/login");
       }, 2000);
-    } else if (response.status === 401) {
-      setStatusMessage([{ message: response.message, type: "error" }]);
     } else {
       setStatusMessage([
         {
-          message: t("login.error"),
+          message: response.message,
           type: "error",
         },
       ]);
@@ -72,7 +58,6 @@ const UserLoginFrom: React.FC = () => {
 
   return (
     <>
-      <h3>{t("login.title")} </h3>
       {statusMessage && (
         <div>
           <ul className="list-none">
@@ -95,31 +80,30 @@ const UserLoginFrom: React.FC = () => {
         className=" border flex flex-center flex-col p-3 rounded shadow "
       >
         <div className="flex-row my-3">
-          <label htmlFor="nameInput">{t("login.validate.username")}:</label>
-
+          <label htmlFor="nameInput">Current Password:</label>
           <input
             className="mx-2 border-2 border-gray-300 rounded"
             id="nameInput"
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            type="password"
+            value={oldPassword}
+            onChange={(event) => setOldPassword(event.target.value)}
           />
-          {nameError && (
-            <div className="text-[#b62626] text-center"> {nameError} </div>
+          {passwordError && (
+            <div className="text-[#b62626] text-center"> {passwordError} </div>
           )}
         </div>
         <div className="flex-row my-3">
-          <label htmlFor="nameInput">{t("login.validate.password")}:</label>
+          <label htmlFor="nameInput">New Password:</label>
 
           <input
             className="mx-2 border-2 border-gray-300 rounded"
             id="passwordInput"
             type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            value={newPassword}
+            onChange={(event) => setNewPassword(event.target.value)}
           />
           {passwordError && (
-            <div className="text-[#b62626] text-center"> {nameError} </div>
+            <div className="text-[#b62626] text-center"> {passwordError} </div>
           )}
         </div>
 
@@ -127,13 +111,10 @@ const UserLoginFrom: React.FC = () => {
           type="submit"
           className="m-2 p-2 rounded bg-[#474132] text-[#ffffff]"
         >
-          {t("login.button")}
+          Change Password
         </button>
-        <p className="text-center text-sm">
-          {t("login.register")} <a href="/signup"> {t("login.registerLink")}</a>
-        </p>
       </form>
     </>
   );
 };
-export default UserLoginFrom;
+export default ChangePasswordForm;

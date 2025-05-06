@@ -29,9 +29,7 @@ const Users: React.FC = () => {
       const users = await response.json();
       return { users };
     } else {
-      seterror(
-        t('auth.error')
-      );
+      seterror(t("auth.error"));
       return { users: [] };
     }
   };
@@ -85,10 +83,10 @@ export const getServerSideProps = async (context) => {
   const { locale } = context;
 
   return {
-      props: {
-          ...(await serverSideTranslations(locale ?? "en", ["common"])),
-      },
+    props: {
+      ...(await serverSideTranslations(locale ?? "en", ["common"])),
+    },
   };
-}
+};
 
 export default Users;

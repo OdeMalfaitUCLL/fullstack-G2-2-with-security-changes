@@ -30,7 +30,7 @@ const UserSignupForm: React.FC = () => {
     } else {
       const userDoesExists = await userExists(username);
       if (userDoesExists) {
-        setNameError(`${t('signup.validate.usernameError2')}: ${username}.`);
+        setNameError(`${t("signup.validate.usernameError2")}: ${username}.`);
         result = false;
       }
     }
@@ -68,7 +68,7 @@ const UserSignupForm: React.FC = () => {
     } else {
       setStatusMessage([
         {
-          message: t('signup.error'),
+          message: t("signup.error"),
           type: "error",
         },
       ]);
@@ -79,7 +79,7 @@ const UserSignupForm: React.FC = () => {
 
   return (
     <>
-      <h3 className="p-2">{t('signup.page.title')} </h3>
+      <h3 className="p-2">{t("signup.page.title")} </h3>
       {statusMessage && (
         <div>
           <ul className="list-none">
@@ -104,7 +104,7 @@ const UserSignupForm: React.FC = () => {
         className=" border flex flex-center flex-col p-3 rounded shadow "
       >
         <div className="flex-row my-3">
-          <label htmlFor="nameInput">{t('signup.validate.username')}:</label>
+          <label htmlFor="nameInput">{t("signup.validate.username")}:</label>
 
           <input
             className="mx-2 border-2 border-gray-300 rounded"
@@ -118,7 +118,7 @@ const UserSignupForm: React.FC = () => {
           )}
         </div>
         <div className="flex-row my-3">
-          <label htmlFor="nameInput">{t('signup.validate.password')}:</label>
+          <label htmlFor="nameInput">{t("signup.validate.password")}:</label>
 
           <input
             className="mx-2 border-2 border-gray-300 rounded"
@@ -135,7 +135,7 @@ const UserSignupForm: React.FC = () => {
           type="submit"
           className="m-2 p-2 rounded bg-[#474132] text-[#ffffff]"
         >
-          {t('signup.button')}
+          {t("signup.button")}
         </button>
       </form>
     </>

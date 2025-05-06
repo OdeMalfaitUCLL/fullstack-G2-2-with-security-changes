@@ -1,3 +1,4 @@
+import ChangePasswordForm from "../components/users/ChangePasswordForm";
 import { User } from "../types";
 
 const getUsers = async () => {
@@ -73,12 +74,55 @@ const signupUser = async (user: {
     console.error(error);
   }
 };
+const deleteUser = async (userId: number) => {
+  const token = JSON.parse(localStorage.getItem("loggedInUser"))?.token;
+  return await fetch(
+    process.env.NEXT_PUBLIC_API_URL + `/users/deleteUser/${userId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+const updatePassword = async (oldPassword, newPassword) => {
+  const token = JSON.parse(localStorage.getItem("loggedInUser"))?.token;
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/users/changePassword",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        }),
+      }
+    );
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Failed To Update Password");
+    }
+    return response.json();
+  } catch (error) {
+    console.log(error);
+    return { status: 401, message: error.message };
+  }
+};
 
 const UserService = {
   getUsers,
   loginUser,
   signupUser,
   userExists,
+  deleteUser,
+  updatePassword,
 };
 
 export default UserService;

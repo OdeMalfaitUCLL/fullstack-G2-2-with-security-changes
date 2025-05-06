@@ -1,4 +1,3 @@
-
 type Role = 'admin' | 'user' | 'guest';
 type Level = 'basic' | 'neutral' | 'urgent';
 type Colour = 'green' | 'yellow' | 'red';
@@ -32,7 +31,5 @@ type AuthenticationResponse = {
     username: string;
     role: string;
 };
-
-
 
 export { TaskInput, PriorityInput, UserInput, AuthenticationResponse, Role, Level, Colour };

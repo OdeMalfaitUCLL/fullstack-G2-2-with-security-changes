@@ -1,46 +1,41 @@
-import { Priority } from "../model/priority";
-import database from "./database";
+import { Priority } from '../model/priority';
+import database from './database';
 
-
-
-const getAllPriorities= async (): Promise<Priority[]> => {
+const getAllPriorities = async (): Promise<Priority[]> => {
     try {
         const prioritiesPrisma = await database.priority.findMany();
         return prioritiesPrisma.map((priorityPrisma) => Priority.from(priorityPrisma));
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
-}
+};
 
-const getPriorityByName = async ({levelName}: {levelName: string}): Promise<Priority[]> => {
+const getPriorityByName = async ({ levelName }: { levelName: string }): Promise<Priority[]> => {
     try {
         const prioritiesPrisma = await database.priority.findMany({
             where: {
-                levelName
-            }
-        })
+                levelName,
+            },
+        });
         return prioritiesPrisma.map((priorityPrisma) => Priority.from(priorityPrisma));
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
-}
+};
 
 const getPriorityById = async (id: number): Promise<Priority | null> => {
     try {
         const priorityPrisma = await database.priority.findUnique({
-            where: {id}
-        })
+            where: { id },
+        });
         return priorityPrisma ? Priority.from(priorityPrisma) : null;
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
-}
+};
 
 const createPriority = async (priority: Priority): Promise<Priority> => {
     try {
@@ -48,19 +43,18 @@ const createPriority = async (priority: Priority): Promise<Priority> => {
             data: {
                 levelName: priority.getLevelName(),
                 colour: priority.getColour(),
-            }
+            },
         });
         return Priority.from(priorityPrisma);
-    }
-    catch (error) {
+    } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
-}
+};
 
-export default{
+export default {
     getAllPriorities,
     getPriorityByName,
     getPriorityById,
     createPriority,
-}
+};

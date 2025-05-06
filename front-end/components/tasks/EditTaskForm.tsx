@@ -85,7 +85,9 @@ const EditTaskForm: React.FC<Props> = ({ task }) => {
     setSidenote(sidenote);
     setDeadline(deadline);
     if (response && response.status === 200) {
-      setTimeout(() => {router.push("/tasks")}, 1000);
+      setTimeout(() => {
+        router.push("/tasks");
+      }, 1000);
     }
   };
   const handlePriorityChange = (

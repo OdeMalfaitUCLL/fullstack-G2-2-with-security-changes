@@ -1,129 +1,127 @@
 {
-    "app.title": "DoneDeal",
-    "general.error": "An error occurred, please try again later.",
-    "auth.error": "You are not authorized to view this page.",
-    "loading": "Loading...",
-    "header" : {
-        "welcome": "Welcome",
-        "nav": {
-            "home": "Home",
-            "tasks": "Tasks",
-            "users": "Users",
-            "login": "Login",
-            "logout": "Logout"
-        }
-    },
-    "signup" : {
-        "title" : "User Registration",
-        "page.title": "Sign Up for DoneDeal",
-        "button" : "Sign Up",
-        "success" : "Registration successful. Redirecting to login page...",
-        "error" : "Oops, an error has occurred. Please try again later.",
-        "login": "Already have an account?",
-        "loginLink": "Click here to login!",
-        "validate": {
-            "username": "Username",
-            "usernameError": "Username is required",
-            "usernameError2": "Userwith this username already exists.",
-            "password": "Password",
-            "passwordError": "Password is required"
-        }
-    },
-    "login" : {
-        "title" : "User Login",
-        "button" : "Login",
-        "success" : "Login successful. Redirecting to homepage...",
-        "error" : "Oops, an error has occurred. Please try again later.",
-        "register": "No account yet?",
-        "registerLink": "Click here to sign up!",
-        "validate": {
-            "username": "Username",
-            "usernameError": "Username is required",
-            "password": "Password",
-            "passwordError": "Password is required"
-        }
-    },
-    "home": {
-        "username":"Username",
-        "password":"Password",
-        "role":"Role"
-    },
-    "tasks": {
-        "title": "Tasks",
-        "for": "Tasks for",
-        "add": "Add Task",
-        "history": "History",
-        "all": "All",
-        "none": "No tasks here.",
-        "priority": {
-            "basic": "Basic",
-            "neutral": "Neutral",
-            "urgent": "Urgent"
-        },
-        "messages": {
-            "delete": "Task deleted successfully.",
-            "update": "Task edited successfully.",
-            "error": "Failed to fetch tasks. Please try again later."
-            
-        },
-        "deadline": "Deadline"
-
-    },
-
-    "addTask": {
-        "title": "Add Task",
-        "button": "Submit Task",
-        "success": "Task added successfully.",
-        "error": "Oops, an error has occurred. Please try again later.",
-        "validate": {
-            "description": "Description",
-            "descriptionError": "Description is required",
-            "priority": "Priority",
-            "priorityError": "Priority is invalid",
-            "deadline": "Deadline",
-            "deadlineError": "Deadline is required",
-            "deadlineError2": "Deadline cannot be before today",
-            "deadlineError3": "Deadline is too soon."
-        },
-        "priority": {
-            "select": "Select a priority",
-            "basic": "Basic",
-            "neutral": "Neutral",
-            "urgent": "Urgent"
-        },
-        "description": "Description",
-        "sidenote": "Sidenote",
-        "deadline": "Deadline",
-        "priorityLevel": "Priority Level"
-
-    },
-    "editTask": {
-        "title": "Edit Task",
-        "button": "Save Changes",
-        "validate": {
-            "description": "Description",
-            "descriptionError": "Description is required",
-            "priority": "Priority",
-            "priorityError": "Priority is invalid",
-            "deadline": "Deadline",
-            "deadlineError": "Deadline is required",
-            "deadlineError2": "Deadline cannot be before today",
-            "deadlineError3": "Deadline is too soon."
-        },
-        "priority": {
-            "select": "Select a priority",
-            "basic": "Basic",
-            "neutral": "Neutral",
-            "urgent": "Urgent"
-        },
-        "description": "Description",
-        "sidenote": "Sidenote",
-        "deadline": "Deadline",
-        "priorityLevel": "Priority Level"
-    },
-    "taskHistory": {
-        "title": "Task History",
-        "p": "Here you can find all your finished tasks.",
-        "back": "Back to Tasks"
+  "app.title": "DoneDeal",
+  "general.error": "An error occurred, please try again later.",
+  "auth.error": "You are not authorized to view this page.",
+  "loading": "Loading...",
+  "header": {
+    "welcome": "Welcome",
+    "nav": {
+      "home": "Home",
+      "tasks": "Tasks",
+      "users": "Users",
+      "login": "Login",
+      "logout": "Logout",
+      "profile": "Profile"
     }
+  },
+  "signup": {
+    "title": "User Registration",
+    "page.title": "Sign Up for DoneDeal",
+    "button": "Sign Up",
+    "success": "Registration successful. Redirecting to login page...",
+    "error": "Oops, an error has occurred. Please try again later.",
+    "login": "Already have an account?",
+    "loginLink": "Click here to login!",
+    "validate": {
+      "username": "Username",
+      "usernameError": "Username is required",
+      "usernameError2": "Userwith this username already exists.",
+      "password": "Password",
+      "passwordError": "Password is required"
+    }
+  },
+  "login": {
+    "title": "User Login",
+    "button": "Login",
+    "success": "Login successful. Redirecting to homepage...",
+    "error": "Oops, an error has occurred. Please try again later.",
+    "register": "No account yet?",
+    "registerLink": "Click here to sign up!",
+    "validate": {
+      "username": "Username",
+      "usernameError": "Username is required",
+      "password": "Password",
+      "passwordError": "Password is required"
+    }
+  },
+  "home": {
+    "username": "Username",
+    "password": "Password",
+    "role": "Role"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "for": "Tasks for",
+    "add": "Add Task",
+    "history": "History",
+    "all": "All",
+    "none": "No tasks here.",
+    "priority": {
+      "basic": "Basic",
+      "neutral": "Neutral",
+      "urgent": "Urgent"
+    },
+    "messages": {
+      "delete": "Task deleted successfully.",
+      "update": "Task edited successfully.",
+      "error": "Failed to fetch tasks. Please try again later."
+    },
+    "deadline": "Deadline"
+  },
+
+  "addTask": {
+    "title": "Add Task",
+    "button": "Submit Task",
+    "success": "Task added successfully.",
+    "error": "Oops, an error has occurred. Please try again later.",
+    "validate": {
+      "description": "Description",
+      "descriptionError": "Description is required",
+      "priority": "Priority",
+      "priorityError": "Priority is invalid",
+      "deadline": "Deadline",
+      "deadlineError": "Deadline is required",
+      "deadlineError2": "Deadline cannot be before today",
+      "deadlineError3": "Deadline is too soon."
+    },
+    "priority": {
+      "select": "Select a priority",
+      "basic": "Basic",
+      "neutral": "Neutral",
+      "urgent": "Urgent"
+    },
+    "description": "Description",
+    "sidenote": "Sidenote",
+    "deadline": "Deadline",
+    "priorityLevel": "Priority Level"
+  },
+  "editTask": {
+    "title": "Edit Task",
+    "button": "Save Changes",
+    "validate": {
+      "description": "Description",
+      "descriptionError": "Description is required",
+      "priority": "Priority",
+      "priorityError": "Priority is invalid",
+      "deadline": "Deadline",
+      "deadlineError": "Deadline is required",
+      "deadlineError2": "Deadline cannot be before today",
+      "deadlineError3": "Deadline is too soon."
+    },
+    "priority": {
+      "select": "Select a priority",
+      "basic": "Basic",
+      "neutral": "Neutral",
+      "urgent": "Urgent"
+    },
+    "description": "Description",
+    "sidenote": "Sidenote",
+    "deadline": "Deadline",
+    "priorityLevel": "Priority Level"
+  },
+  "taskHistory": {
+    "title": "Task History",
+    "p": "Here you can find all your finished tasks.",
+    "back": "Back to Tasks"
+  }
 }

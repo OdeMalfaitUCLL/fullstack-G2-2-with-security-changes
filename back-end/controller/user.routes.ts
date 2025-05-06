@@ -215,5 +215,91 @@ userRouter.get('/exists/:username', async (req: Request, res: Response, next: Ne
         next(error);
     }
 });
+/**
+ * @swagger
+ * /users/deleteUser/{userId}:
+ *  delete:
+ *      security:
+ *       - bearerAuth: []
+ *      summary: Delete user by userId
+ *      parameters:
+ *          - in: path
+ *            name: userId
+ *            schema:
+ *              type: integer
+ *              required: true
+ *              description: The id of the user.
+ *      responses:
+ *       200:
+ *         description: A message when the user is succesfully deleted.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ */
+userRouter.delete(
+    '/deleteUser/:userId',
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const request = req as Request & { auth: { username: string; role: Role } };
+            const { username, role } = request.auth;
+            const success = await userService.deleteUser(Number(req.params.userId), {
+                username,
+                role,
+            });
+            if (success) {
+                res.status(200).json({ message: 'User successfully deleted!' });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+/**
+ * @swagger
+ * /users/changePassword:
+ *   post:
+ *      security:
+ *       - bearerAuth: []
+ *      summary: Update the password for a existing user.
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                oldPassword:
+ *                  type: string
+ *                  description: The current password of the user.
+ *                newPassword:
+ *                  type: string
+ *                  description: The new password to set.
+ *      responses:
+ *         200:
+ *            description: Message that password is succesfully updated.
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  type: string
+ */
+userRouter.post('/changePassword', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const request = req as Request & { auth: { username: string; role: Role } };
+        const { username, role } = request.auth;
+        const { oldPassword, newPassword } = req.body;
+        const updatedPassword = await userService.updatePassword(oldPassword, newPassword, {
+            username,
+            role,
+        });
+        if (updatedPassword) {
+            res.status(200).json({
+                message: 'Password has been succesfully updated, login again with new credentials!',
+            });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 
 export { userRouter };

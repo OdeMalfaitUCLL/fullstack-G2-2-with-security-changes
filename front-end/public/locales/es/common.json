@@ -1,125 +1,126 @@
 {
-    "app.title": "DoneDeal",
-    "general.error": "Ocurrió un error, por favor intente nuevamente más tarde.",
-    "auth.error": "No está autorizado para ver esta página.",
-    "loading": "Cargando...",
-    "header": {
-        "welcome": "Bienvenido",
-        "nav": {
-            "home": "Inicio",
-            "tasks": "Tareas",
-            "users": "Usuarios",
-            "login": "Iniciar sesión",
-            "logout": "Cerrar sesión"
-        }
-    },
-    "signup": {
-        "title": "Registro de usuario",
-        "page.title": "Regístrate en DoneDeal",
-        "button": "Registrarse",
-        "success": "Registro exitoso. Redirigiendo a la página de inicio de sesión...",
-        "error": "Vaya, ocurrió un error. Por favor intente nuevamente más tarde.",
-        "login": "¿Ya tienes una cuenta?",
-        "loginLink": "¡Haz clic aquí para iniciar sesión!",
-        "validate": {
-            "username": "Nombre de usuario",
-            "usernameError": "El nombre de usuario es obligatorio",
-            "usernameError2": "Ya existe un usuario con este nombre de usuario.",
-            "password": "Contraseña",
-            "passwordError": "La contraseña es obligatoria"
-        }
-    },
-    "login": {
-        "title": "Iniciar sesión",
-        "button": "Iniciar sesión",
-        "success": "Inicio de sesión exitoso. Redirigiendo a la página principal...",
-        "error": "Vaya, ocurrió un error. Por favor intente nuevamente más tarde.",
-        "register": "¿No tienes una cuenta?",
-        "registerLink": "¡Haz clic aquí para registrarte!",
-        "validate": {
-            "username": "Nombre de usuario",
-            "usernameError": "El nombre de usuario es obligatorio",
-            "password": "Contraseña",
-            "passwordError": "La contraseña es obligatoria"
-        }
-    },
-    "home": {
-        "username": "Nombre de usuario",
-        "password": "Contraseña",
-        "role": "Rol"
-    },
-    "tasks": {
-        "title": "Tareas",
-        "for": "Tareas para",
-        "add": "Agregar tarea",
-        "history": "Historial",
-        "all": "Todas",
-        "none": "No hay tareas aqui.",
-        "priority": {
-            "basic": "Básico",
-            "neutral": "Neutral",
-            "urgent": "Urgente"
-        },
-        "messages": {
-            "delete": "Tarea eliminada con éxito.",
-            "update": "Tarea editada con éxito.",
-            "error": "No se pudieron obtener las tareas. Por favor intente nuevamente más tarde."
-        },
-        "deadline": "Fecha límite" 
-    },
-    "addTask": {
-        "title": "Agregar tarea",
-        "button": "Enviar tarea",
-        "success": "Tarea agregada con éxito.",
-        "error": "Ocurrió un error al procesar su solicitud.",
-        "validate": {
-            "description": "Descripción",
-            "descriptionError": "La descripción es obligatoria",
-            "priority": "Prioridad",
-            "priorityError": "La prioridad no es válida",
-            "deadline": "Fecha límite",
-            "deadlineError": "La fecha límite es obligatoria",
-            "deadlineError2": "La fecha límite no puede ser anterior a hoy",
-            "deadlineError3": "La fecha límite es demasiado pronto."
-        },
-        "priority": {
-            "select": "Seleccione una prioridad",
-            "basic": "Básico",
-            "neutral": "Neutral",
-            "urgent": "Urgente"
-        },
-        "description": "Descripción",
-        "sidenote": "Nota",
-        "deadline": "Fecha límite",
-        "priorityLevel": "Nivel de prioridad"
-    },
-    "editTask": {
-        "title": "Editar tarea",
-        "button": "Guardar cambios",
-        "validate": {
-            "description": "Descripción",
-            "descriptionError": "La descripción es obligatoria",
-            "priority": "Prioridad",
-            "priorityError": "La prioridad no es válida",
-            "deadline": "Fecha límite",
-            "deadlineError": "La fecha límite es obligatoria",
-            "deadlineError2": "La fecha límite no puede ser anterior a hoy",
-            "deadlineError3": "La fecha límite es demasiado pronto."
-        },
-        "priority": {
-            "select": "Seleccione una prioridad",
-            "basic": "Básico",
-            "neutral": "Neutral",
-            "urgent": "Urgente"
-        },
-        "description": "Descripción",
-        "sidenote": "Nota",
-        "deadline": "Fecha límite",
-        "priorityLevel": "Nivel de prioridad"
-    },
-    "taskHistory": {
-        "title": "Historial de tareas",
-        "p": "Aqui puedes ver todas las tareas que has completado.",
-        "back": "Volver a tareas"
+  "app.title": "DoneDeal",
+  "general.error": "Ocurrió un error, por favor intente nuevamente más tarde.",
+  "auth.error": "No está autorizado para ver esta página.",
+  "loading": "Cargando...",
+  "header": {
+    "welcome": "Bienvenido",
+    "nav": {
+      "home": "Inicio",
+      "tasks": "Tareas",
+      "users": "Usuarios",
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "profile": "Perfil"
     }
+  },
+  "signup": {
+    "title": "Registro de usuario",
+    "page.title": "Regístrate en DoneDeal",
+    "button": "Registrarse",
+    "success": "Registro exitoso. Redirigiendo a la página de inicio de sesión...",
+    "error": "Vaya, ocurrió un error. Por favor intente nuevamente más tarde.",
+    "login": "¿Ya tienes una cuenta?",
+    "loginLink": "¡Haz clic aquí para iniciar sesión!",
+    "validate": {
+      "username": "Nombre de usuario",
+      "usernameError": "El nombre de usuario es obligatorio",
+      "usernameError2": "Ya existe un usuario con este nombre de usuario.",
+      "password": "Contraseña",
+      "passwordError": "La contraseña es obligatoria"
+    }
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "button": "Iniciar sesión",
+    "success": "Inicio de sesión exitoso. Redirigiendo a la página principal...",
+    "error": "Vaya, ocurrió un error. Por favor intente nuevamente más tarde.",
+    "register": "¿No tienes una cuenta?",
+    "registerLink": "¡Haz clic aquí para registrarte!",
+    "validate": {
+      "username": "Nombre de usuario",
+      "usernameError": "El nombre de usuario es obligatorio",
+      "password": "Contraseña",
+      "passwordError": "La contraseña es obligatoria"
+    }
+  },
+  "home": {
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "role": "Rol"
+  },
+  "tasks": {
+    "title": "Tareas",
+    "for": "Tareas para",
+    "add": "Agregar tarea",
+    "history": "Historial",
+    "all": "Todas",
+    "none": "No hay tareas aqui.",
+    "priority": {
+      "basic": "Básico",
+      "neutral": "Neutral",
+      "urgent": "Urgente"
+    },
+    "messages": {
+      "delete": "Tarea eliminada con éxito.",
+      "update": "Tarea editada con éxito.",
+      "error": "No se pudieron obtener las tareas. Por favor intente nuevamente más tarde."
+    },
+    "deadline": "Fecha límite"
+  },
+  "addTask": {
+    "title": "Agregar tarea",
+    "button": "Enviar tarea",
+    "success": "Tarea agregada con éxito.",
+    "error": "Ocurrió un error al procesar su solicitud.",
+    "validate": {
+      "description": "Descripción",
+      "descriptionError": "La descripción es obligatoria",
+      "priority": "Prioridad",
+      "priorityError": "La prioridad no es válida",
+      "deadline": "Fecha límite",
+      "deadlineError": "La fecha límite es obligatoria",
+      "deadlineError2": "La fecha límite no puede ser anterior a hoy",
+      "deadlineError3": "La fecha límite es demasiado pronto."
+    },
+    "priority": {
+      "select": "Seleccione una prioridad",
+      "basic": "Básico",
+      "neutral": "Neutral",
+      "urgent": "Urgente"
+    },
+    "description": "Descripción",
+    "sidenote": "Nota",
+    "deadline": "Fecha límite",
+    "priorityLevel": "Nivel de prioridad"
+  },
+  "editTask": {
+    "title": "Editar tarea",
+    "button": "Guardar cambios",
+    "validate": {
+      "description": "Descripción",
+      "descriptionError": "La descripción es obligatoria",
+      "priority": "Prioridad",
+      "priorityError": "La prioridad no es válida",
+      "deadline": "Fecha límite",
+      "deadlineError": "La fecha límite es obligatoria",
+      "deadlineError2": "La fecha límite no puede ser anterior a hoy",
+      "deadlineError3": "La fecha límite es demasiado pronto."
+    },
+    "priority": {
+      "select": "Seleccione una prioridad",
+      "basic": "Básico",
+      "neutral": "Neutral",
+      "urgent": "Urgente"
+    },
+    "description": "Descripción",
+    "sidenote": "Nota",
+    "deadline": "Fecha límite",
+    "priorityLevel": "Nivel de prioridad"
+  },
+  "taskHistory": {
+    "title": "Historial de tareas",
+    "p": "Aqui puedes ver todas las tareas que has completado.",
+    "back": "Volver a tareas"
+  }
 }

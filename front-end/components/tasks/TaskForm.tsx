@@ -26,7 +26,7 @@ const TaskForm: React.FC = () => {
     setDescriptionError("");
     setPriorityError("");
     setStatusMessages([]);
-  }
+  };
   const validate = (): boolean => {
     if (!description || description.trim() === "") {
       setDescriptionError("");
@@ -35,29 +35,39 @@ const TaskForm: React.FC = () => {
     const today = new Date().toISOString().split("T")[0];
 
     if (deadline < today) {
-      setDeadlineError(t('addTask.validate.deadlineError2'));
+      setDeadlineError(t("addTask.validate.deadlineError2"));
       return false;
-    } 
+    }
 
     if (!deadline || deadline.trim() === "") {
-      setDeadlineError(t('addTask.validate.deadlineError'));
+      setDeadlineError(t("addTask.validate.deadlineError"));
       return false;
     }
 
     const now = new Date();
     console.log(now.toLocaleString("en-GB", { timeZone: "Europe/London" }));
-    console.log(new Date(deadline).toLocaleString("en-GB", { timeZone: "Europe/London" }));
-    if (new Date(deadline).toLocaleString("en-GB", {timeZone: "Europe/London"}) < now.toLocaleString("en-GB", { timeZone: "Europe/London" })) {
-      setDeadlineError(t('addTask.validate.deadlineError2'));
-      return  false;
+    console.log(
+      new Date(deadline).toLocaleString("en-GB", { timeZone: "Europe/London" })
+    );
+    if (
+      new Date(deadline).toLocaleString("en-GB", {
+        timeZone: "Europe/London",
+      }) < now.toLocaleString("en-GB", { timeZone: "Europe/London" })
+    ) {
+      setDeadlineError(t("addTask.validate.deadlineError2"));
+      return false;
     }
 
-    if (priority.levelName !== "basic" && priority.levelName !== "neutral" && priority.levelName !== "urgent") {
-      setPriorityError(t('addTask.validate.priorityError'));
+    if (
+      priority.levelName !== "basic" &&
+      priority.levelName !== "neutral" &&
+      priority.levelName !== "urgent"
+    ) {
+      setPriorityError(t("addTask.validate.priorityError"));
       return false;
     }
     return true;
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,14 +75,13 @@ const TaskForm: React.FC = () => {
     if (!validate()) {
       return;
     }
-   
-    
-    const response =await TaskService.createTask({
+
+    const response = await TaskService.createTask({
       description,
       sidenote,
       deadline: new Date(deadline),
       priority,
-      user: {id: userId},
+      user: { id: userId },
     });
     setDescription(description);
     setSidenote(sidenote);
@@ -85,14 +94,11 @@ const TaskForm: React.FC = () => {
     } else {
       setStatusMessages([
         {
-          message: t('addTask.error'),
+          message: t("addTask.error"),
           type: "error",
         },
-      ])
+      ]);
     }
-
-
-    
   };
 
   const handlePriorityChange = (
@@ -120,12 +126,14 @@ const TaskForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} 
-    className="w-full max-w-md p-8 rounded-lg mx-auto shadow flex flex-col items-stretch">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-md p-8 rounded-lg mx-auto shadow flex flex-col items-stretch"
+    >
       <div className=" flex flex-col my-3">
-        <label htmlFor="description"> {t('addTask.description')}: </label>
+        <label htmlFor="description"> {t("addTask.description")}: </label>
         <input
-        className="border-2 border-gray-300 rounded"
+          className="border-2 border-gray-300 rounded"
           type="text"
           id="description"
           name="description"
@@ -137,23 +145,22 @@ const TaskForm: React.FC = () => {
           <>
             <small className="text-[#b62626]">{descriptionError}</small>
           </>
-        ) }
+        )}
       </div>
       <div className="flex flex-col my-3">
-        <label htmlFor="sidenote">{t('addTask.sidenote')}:</label>
+        <label htmlFor="sidenote">{t("addTask.sidenote")}:</label>
         <textarea
-        className="border-2 border-gray-300 rounded"
+          className="border-2 border-gray-300 rounded"
           id="sidenote"
           name="sidenote"
           value={sidenote}
           onChange={(e) => setSidenote(e.target.value)}
         />
-        
       </div>
       <div className="flex flex-col my-3">
-        <label htmlFor="deadline">{t('addTask.deadline')}:</label>
+        <label htmlFor="deadline">{t("addTask.deadline")}:</label>
         <input
-        className=" border-2 border-gray-300 rounded"
+          className=" border-2 border-gray-300 rounded"
           type="datetime-local"
           id="deadline"
           name="deadline"
@@ -167,39 +174,44 @@ const TaskForm: React.FC = () => {
         )}
       </div>
       <div className="flex flex-col my-3">
-        <label htmlFor="priorityLevel">{t('addTask.priorityLevel')}:</label>
+        <label htmlFor="priorityLevel">{t("addTask.priorityLevel")}:</label>
         <select
-        className=" border-2 border-gray-300 rounded"
+          className=" border-2 border-gray-300 rounded"
           id="priorityLevel"
           name="levelName"
           value={priority.levelName}
           onChange={handlePriorityChange}
           required
         >
-          <option value="">{t('addTask.priority.select')}</option>
-          <option value="urgent">{t('addTask.priority.urgent')}</option>
-          <option value="neutral">{t('addTask.priority.neutral')}</option>
-          <option value="basic">{t('addTask.priority.basic')}</option>
+          <option value="">{t("addTask.priority.select")}</option>
+          <option value="urgent">{t("addTask.priority.urgent")}</option>
+          <option value="neutral">{t("addTask.priority.neutral")}</option>
+          <option value="basic">{t("addTask.priority.basic")}</option>
         </select>
       </div>
       {priorityError && (
         <small className="text-[#b62626]">{priorityError}</small>
       )}
-      <button className="p-2 rounded bg-[#474132] text-[#ffffff] mt-2" type="submit">{t('addTask.button')}</button>
+      <button
+        className="p-2 rounded bg-[#474132] text-[#ffffff] mt-2"
+        type="submit"
+      >
+        {t("addTask.button")}
+      </button>
       {statusMessages && (
         <ul className="list-none">
-        {statusMessages.map(({ message, type }, index) => (
-          <li
-            key={index}
-            className={classNames({
-              "text-[#b62626]": type == "error",
-              "text-[#26b639]": type == "success",
-            })}
-          >
-            {message}
-          </li>
-        ))}
-      </ul>
+          {statusMessages.map(({ message, type }, index) => (
+            <li
+              key={index}
+              className={classNames({
+                "text-[#b62626]": type == "error",
+                "text-[#26b639]": type == "success",
+              })}
+            >
+              {message}
+            </li>
+          ))}
+        </ul>
       )}
     </form>
   );

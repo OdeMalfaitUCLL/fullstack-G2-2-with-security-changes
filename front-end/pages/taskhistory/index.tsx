@@ -14,7 +14,7 @@ const TaskHistory: React.FC = () => {
   const [loggedInUser, setloggedInUser] = useState<User | null>(null);
   const { t } = useTranslation();
   useEffect(() => {
-   setloggedInUser(JSON.parse(localStorage.getItem("loggedInUser")));
+    setloggedInUser(JSON.parse(localStorage.getItem("loggedInUser")));
   }, []);
 
   const getFinishedTasks = async () => {
@@ -29,15 +29,22 @@ const TaskHistory: React.FC = () => {
   useInterval(() => {
     getFinishedTasks();
   }, 2000);
-  
+
   return (
     <>
       <Header />
 
-      <main className="flex flex-col" >
-      <Link  className="bg-[#6e654d] hover:bg-[#978b7c] text-white font-bold mx-4 p-2 rounded text-decoration-none self-start" href='/tasks'>{t('taskHistory.back')} </Link>
-        <h1 className=" font-bold text-[#534e46] m-2 ">{t('taskHistory.title')} </h1>
-        <p className="mx-5">{t('taskHistory.p')} </p>
+      <main className="flex flex-col">
+        <Link
+          className="bg-[#6e654d] hover:bg-[#978b7c] text-white font-bold mx-4 p-2 rounded text-decoration-none self-start"
+          href="/tasks"
+        >
+          {t("taskHistory.back")}{" "}
+        </Link>
+        <h1 className=" font-bold text-[#534e46] m-2 ">
+          {t("taskHistory.title")}{" "}
+        </h1>
+        <p className="mx-5">{t("taskHistory.p")} </p>
         {tasks && <TaskOverview tasks={tasks} />}
       </main>
     </>
@@ -48,10 +55,10 @@ export const getServerSideProps = async (context) => {
   const { locale } = context;
 
   return {
-      props: {
-          ...(await serverSideTranslations(locale ?? "en", ["common"])),
-      },
+    props: {
+      ...(await serverSideTranslations(locale ?? "en", ["common"])),
+    },
   };
-}
+};
 
 export default TaskHistory;

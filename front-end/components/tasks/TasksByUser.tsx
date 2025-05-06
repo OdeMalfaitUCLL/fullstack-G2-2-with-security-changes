@@ -9,7 +9,8 @@ type Props = {
 const TasksByUser: React.FC<Props> = ({ user }) => {
   return (
     <>
-      {user && user.tasks &&
+      {user &&
+        user.tasks &&
         user.tasks.map((task, index) => (
           <table
             className={`border border-${task.priority.colour} border-opacity-50 border-4 m-2 bg-secondary bg-opacity-25`}
