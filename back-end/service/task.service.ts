@@ -4,7 +4,7 @@ import { Task } from '../model/task';
 import priorityDb from '../repository/priority.db';
 import taskDb from '../repository/task.db';
 import userDb from '../repository/user.db';
-import { PriorityInput, TaskInput } from '../types';
+import { TaskInput } from '../types';
 
 const getAllTasks = async (): Promise<Task[]> => await taskDb.getAllTasks();
 

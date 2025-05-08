@@ -1,7 +1,4 @@
-import { addDays } from 'date-fns';
-import { Task } from '../model/task';
 import { User } from '../model/user';
-import { Priority } from '../model/priority';
 import database from './database';
 
 // const users = [
@@ -96,7 +93,7 @@ const createUser = async (user: User): Promise<User> => {
 };
 const deleteUser = async (id: number): Promise<void> => {
     try {
-        const userPrisma = await database.user.delete({
+        await database.user.delete({
             where: { id },
         });
     } catch (error) {
@@ -106,7 +103,7 @@ const deleteUser = async (id: number): Promise<void> => {
 };
 const updatePassword = async (userId: number, newPassword: string) => {
     try {
-        const userPrisma = await database.user.update({
+        await database.user.update({
             where: { id: userId },
             data: {
                 password: newPassword,

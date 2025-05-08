@@ -7,14 +7,12 @@ import taskhistoryDb from '../../repository/taskhistory.db';
 import { TaskHistory } from '../../model/taskhistory';
 import taskhistoryService from '../../service/taskhistory.service';
 import taskDb from '../../repository/task.db';
-import exp from 'constants';
-import { mock } from 'node:test';
 
 const user = new User({
     id: 1,
     username: 'johnDoe',
     password: 'password1234',
-    role:'user'
+    role: 'user',
 });
 const task = new Task({
     id: 4,
@@ -47,7 +45,6 @@ let mockTaskDbGetTaskById: jest.Mock;
 let mockUserDbgetUserById: jest.Mock;
 let mockTaskHistoryDbFinishTask: jest.Mock;
 
-
 beforeEach(() => {
     mockUserDbgetUserByUsername = jest.fn();
     mockTaskHistoryDbGetTaskHistoryByUser = jest.fn();
@@ -60,8 +57,6 @@ beforeEach(() => {
     taskhistoryDb.getTaskHistoryByUser = mockTaskHistoryDbGetTaskHistoryByUser;
     taskDb.getTaskById = mockTaskDbGetTaskById;
     taskhistoryDb.finishTask = mockTaskHistoryDbFinishTask;
-
-    
 });
 
 afterEach(() => {
@@ -73,7 +68,10 @@ test("given valid task and user; when getting finished tasks from user's taskhis
     mockUserDbgetUserByUsername.mockResolvedValue(user);
     mockTaskHistoryDbGetTaskHistoryByUser.mockResolvedValue(taskHistory);
     //when:
-    const result = await taskhistoryService.getAllFinishedTasksByUser({username: user.getUsername(),role:user.getRole()});
+    const result = await taskhistoryService.getAllFinishedTasksByUser({
+        username: user.getUsername(),
+        role: user.getRole(),
+    });
     //then:
     expect(mockUserDbgetUserByUsername).toHaveBeenCalledTimes(1);
     expect(mockTaskHistoryDbGetTaskHistoryByUser).toHaveBeenCalledTimes(1);
@@ -85,7 +83,11 @@ test('given unknkown username; when getting finished tasks from takshistory; the
     mockUserDbgetUserByUsername.mockResolvedValue(null);
 
     //when:
-    const testing = async () => await taskhistoryService.getAllFinishedTasksByUser({ username: 'unknownUser', role: 'user' });
+    const testing = async () =>
+        await taskhistoryService.getAllFinishedTasksByUser({
+            username: 'unknownUser',
+            role: 'user',
+        });
 
     //then:
     await expect(testing).rejects.toThrow(`No user found with username unknownUser.`);
@@ -97,19 +99,26 @@ test('given invalid username; when getting finished tasks from taskhistory; then
     mockTaskHistoryDbGetTaskHistoryByUser.mockResolvedValue(null);
 
     //when:
-    const testing = async () => await taskhistoryService.getAllFinishedTasksByUser({ username: user.getUsername(), role: user.getRole() });
+    const testing = async () =>
+        await taskhistoryService.getAllFinishedTasksByUser({
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
 
     //then:
     await expect(testing).rejects.toThrow('No history found by user.');
 });
 
-
-test('given user without history; when getting finished tasks from taskhistory, then error is thrown;', async() => {
+test('given user without history; when getting finished tasks from taskhistory, then error is thrown;', async () => {
     //given
     mockUserDbgetUserByUsername.mockResolvedValue(user);
     mockTaskHistoryDbGetTaskHistoryByUser.mockResolvedValue(null);
     //when
-    const testing = async () => await taskhistoryService.getAllFinishedTasksByUser({username: user.getUsername(),role:user.getRole()});
+    const testing = async () =>
+        await taskhistoryService.getAllFinishedTasksByUser({
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then:
     expect(testing).rejects.toThrow('No history found by user.');
 });
@@ -121,17 +130,23 @@ test('given valid user and task; when adding task to taskhistory; then task is p
     const finishedTask = { ...task, done: true };
     mockTaskHistoryDbFinishTask.mockResolvedValue(finishedTask);
     //when:
-    const result = await taskhistoryService.addFinishedTaskToHistoryByUser(1, 4,{username: user.getUsername(),role:user.getRole()});
+    const result = await taskhistoryService.addFinishedTaskToHistoryByUser(1, 4, {
+        username: user.getUsername(),
+        role: user.getRole(),
+    });
     //then
     expect(mockTaskDbGetTaskById).toHaveBeenCalledTimes(1);
     expect(mockTaskHistoryDbGetTaskHistoryByUser).toHaveBeenCalledTimes(1);
     expect(mockTaskHistoryDbFinishTask).toHaveBeenCalledTimes(1);
     expect(result).toEqual(finishedTask);
 });
-    
 
-test('given invalid userId; when adding task to history; then: error is thrown;', async() => {
-    const testing = async () => await taskhistoryService.addFinishedTaskToHistoryByUser(0, 3,{username: user.getUsername(),role:user.getRole()});
+test('given invalid userId; when adding task to history; then: error is thrown;', async () => {
+    const testing = async () =>
+        await taskhistoryService.addFinishedTaskToHistoryByUser(0, 3, {
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then:
     expect(testing).rejects.toThrow('Userid is required.');
 });
@@ -140,7 +155,11 @@ test('given invalid taskId; when when adding task to history; then: error is thr
     //given:
     mockUserDbgetUserById.mockResolvedValue(user);
     //when:
-    const testing = async () => await taskhistoryService.addFinishedTaskToHistoryByUser(1, 0,{username: user.getUsername(),role:user.getRole()});
+    const testing = async () =>
+        await taskhistoryService.addFinishedTaskToHistoryByUser(1, 0, {
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then:
     expect(testing).rejects.toThrow('TaskId is required.');
 });
@@ -149,24 +168,32 @@ test('given unknkown userid; when when adding task to history; then error is thr
     //given:
     mockUserDbgetUserById.mockResolvedValue(null);
     //when:
-    const testing = async () => await taskhistoryService.addFinishedTaskToHistoryByUser(505, 1,{username: user.getUsername(),role:user.getRole()});
+    const testing = async () =>
+        await taskhistoryService.addFinishedTaskToHistoryByUser(505, 1, {
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then:
     expect(testing).rejects.toThrow(`No user found with id 505.`);
 });
 test('given unknkown taskid; when when adding task to history; then error is thrown', async () => {
     //given:
-     mockUserDbgetUserById.mockResolvedValue(user);
+    mockUserDbgetUserById.mockResolvedValue(user);
     taskhistoryDb.getTaskHistoryByUser =
         mockTaskHistoryDbGetTaskHistoryByUser.mockResolvedValue(taskHistory);
     taskDb.getTaskById = mockTaskDbGetTaskById.mockResolvedValue(null);
     //when:
-    const testing = async () => await taskhistoryService.addFinishedTaskToHistoryByUser(1, 505,{username: user.getUsername(),role:user.getRole()});
+    const testing = async () =>
+        await taskhistoryService.addFinishedTaskToHistoryByUser(1, 505, {
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then:
     expect(testing).rejects.toThrow(`No task found with id 505.`);
 });
 
 test('given task that is not from user; when adding task to taskhistory; then task is pushed to taskhistory and returned', async () => {
-    const user2 = new User({id: 2, username: 'janeDoe', password: 'password1234',role:"user"});
+    const user2 = new User({ id: 2, username: 'janeDoe', password: 'password1234', role: 'user' });
     const user2Task = new Task({
         id: 5,
         description: 'walking',
@@ -183,7 +210,11 @@ test('given task that is not from user; when adding task to taskhistory; then ta
         mockTaskHistoryDbGetTaskHistoryByUser.mockResolvedValue(taskHistory);
     taskDb.getTaskById = mockTaskDbGetTaskById.mockResolvedValue(user2Task);
     //when:
-    const testing = async () => await taskhistoryService.addFinishedTaskToHistoryByUser(1, 4,{username: user.getUsername(),role:user.getRole()});
+    const testing = async () =>
+        await taskhistoryService.addFinishedTaskToHistoryByUser(1, 4, {
+            username: user.getUsername(),
+            role: user.getRole(),
+        });
     //then
     expect(testing).rejects.toThrow('The task is not from owner with id 1.');
 });

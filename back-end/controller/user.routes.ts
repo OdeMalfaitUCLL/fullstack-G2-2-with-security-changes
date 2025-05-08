@@ -121,8 +121,6 @@ userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
 
 userRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const request = req as Request & { auth: { username: string; role: Role } };
-        const { username, role } = request.auth;
         const user = await userService.getUserById(Number(req.params.id));
         res.status(200).json(user);
     } catch (error) {

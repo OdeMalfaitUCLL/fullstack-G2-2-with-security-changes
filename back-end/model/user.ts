@@ -1,6 +1,5 @@
 import { Role } from '../types';
-import { Task } from './task';
-import { User as UserPrisma, Task as TaskPrisma } from '@prisma/client';
+import { User as UserPrisma } from '@prisma/client';
 export class User {
     private id?: number;
     private username: string;

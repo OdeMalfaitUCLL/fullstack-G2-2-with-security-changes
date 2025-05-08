@@ -1,6 +1,4 @@
-import { addDays } from 'date-fns';
 import { Task } from '../model/task';
-import { Priority } from '../model/priority';
 import database from './database';
 import { User } from '../model/user';
 
@@ -168,7 +166,7 @@ const getTasksByPriorityByUser = async (levelName: string, username: string) => 
 
 const deleteTask = async (id: number): Promise<void> => {
     try {
-        const taskPrisma = await database.task.delete({
+        await database.task.delete({
             where: { id },
         });
     } catch (error) {

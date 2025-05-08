@@ -111,7 +111,7 @@ export class Task {
         return new Task({
             id,
             description,
-            sidenote: sidenote || undefined,
+            sidenote: sidenote ?? undefined,
             startDate,
             endDate,
             deadline,

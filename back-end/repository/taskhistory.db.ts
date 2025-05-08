@@ -1,10 +1,6 @@
-import { LargeNumberLike } from 'crypto';
 import { Task } from '../model/task';
 import { TaskHistory } from '../model/taskhistory';
-import { addDays } from 'date-fns';
-import { Priority } from '../model/priority';
 import database from './database';
-import { create } from 'domain';
 
 const getAllTaskHistories = async (): Promise<TaskHistory[]> => {
     try {
@@ -87,7 +83,7 @@ const finishTask = async ({ task }: { task: Task }): Promise<Task | null> => {
                 user: true,
             },
         });
-        const taskHistoryPrisma = await database.taskHistory.update({
+        await database.taskHistory.update({
             where: { userId: task.getUser().getId() },
             data: {
                 finishedTasks: {
@@ -112,7 +108,7 @@ const finishTask = async ({ task }: { task: Task }): Promise<Task | null> => {
 };
 const deleteHistory = async (userId: number | undefined): Promise<void> => {
     try {
-        const taskHistoryPrisma = await database.taskHistory.delete({
+        await database.taskHistory.delete({
             where: { userId: userId },
         });
     } catch (error) {

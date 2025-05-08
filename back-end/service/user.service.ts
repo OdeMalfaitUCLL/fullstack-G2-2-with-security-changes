@@ -40,7 +40,7 @@ const createUser = async ({ username, password, role }: UserInput): Promise<User
     const user = new User({ username, password: hashedPassword, role });
     const newUser = await userDb.createUser(user);
     const taskHistory = new TaskHistory({ user: newUser, finishedTasks: [] });
-    const newTaskHistory = await taskhistoryDb.createTaskHistory(taskHistory);
+    await taskhistoryDb.createTaskHistory(taskHistory);
     return newUser;
 };
 
