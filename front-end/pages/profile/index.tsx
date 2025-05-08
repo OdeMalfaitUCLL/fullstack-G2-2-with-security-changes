@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { User } from "../../types";
-import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import Header from "../../components/header";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import ChangePasswordForm from "../../components/users/ChangePasswordForm";
 
 const Profile: React.FC = () => {
-  const [error, seterror] = useState<string | null>(null);
   const [loggedInUser, setLoggedInUser] = useState<User>(null);
   useEffect(() => {
     setLoggedInUser(JSON.parse(localStorage.getItem("loggedInUser")));

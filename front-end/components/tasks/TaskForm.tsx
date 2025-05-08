@@ -142,9 +142,7 @@ const TaskForm: React.FC = () => {
           required
         />
         {descriptionError && (
-          <>
-            <small className="text-[#b62626]">{descriptionError}</small>
-          </>
+          <small className="text-[#b62626]">{descriptionError}</small>
         )}
       </div>
       <div className="flex flex-col my-3">

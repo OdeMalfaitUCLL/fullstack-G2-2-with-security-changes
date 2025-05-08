@@ -19,8 +19,7 @@ const UserOverview: React.FC<Props> = ({ users }) => {
   const deleteUser = async (userId: number) => {
     const response = await UserService.deleteUser(userId);
     if (response.ok) {
-      const users = await response.json();
-      return;
+      await response.json();
     } else {
       seterror(t("auth.error"));
       return { users: [] };

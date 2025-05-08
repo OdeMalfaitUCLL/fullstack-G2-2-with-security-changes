@@ -1,4 +1,4 @@
-import { Priority, Task, User } from "../types";
+import { Priority, User } from "../types";
 
 const getAllTasks = async () => {
   const token = JSON.parse(localStorage.getItem("loggedInUser"))?.token;
@@ -13,7 +13,7 @@ const getAllTasks = async () => {
 const getActiveTasks = async () => {
   const token = JSON.parse(localStorage.getItem("loggedInUser"))?.token;
   try {
-    return fetch(process.env.NEXT_PUBLIC_API_URL + "/tasks/active", {
+    return await fetch(process.env.NEXT_PUBLIC_API_URL + "/tasks/active", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -94,13 +94,16 @@ const deleteTask = async (id: { taskId: number }) => {
 };
 const getTaskById = async (id: { taskId: number }) => {
   const token = JSON.parse(localStorage.getItem("loggedInUser"))?.token;
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/tasks/${id.taskId}`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + `/tasks/${id.taskId}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.json();
 };
 

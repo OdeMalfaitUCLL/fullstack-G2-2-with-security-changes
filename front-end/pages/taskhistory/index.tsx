@@ -1,4 +1,3 @@
-import { Head } from "next/document";
 import Header from "../../components/header";
 import { useEffect, useState } from "react";
 import { Task, User } from "../../types";

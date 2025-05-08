@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Priority, StatusMessage, Task } from "../../types";
+import { Priority, Task } from "../../types";
 import { useRouter } from "next/router";
 import TaskService from "../../services/TaskService";
-import classNames from "classnames";
 import { useTranslation } from "next-i18next";
 
 type Props = {

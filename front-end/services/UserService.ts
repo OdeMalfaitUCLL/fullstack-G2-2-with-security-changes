@@ -1,4 +1,3 @@
-import ChangePasswordForm from "../components/users/ChangePasswordForm";
 import { User } from "../types";
 
 const getUsers = async () => {
@@ -42,7 +41,7 @@ const loginUser = async (user: User) => {
     );
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Failed To login user");
+      throw new Error(errorData.message ?? "Failed To login user");
     }
     return response;
   } catch (error) {
@@ -107,7 +106,7 @@ const updatePassword = async (oldPassword, newPassword) => {
     );
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Failed To Update Password");
+      throw new Error(errorData.message ?? "Failed To Update Password");
     }
     return response.json();
   } catch (error) {

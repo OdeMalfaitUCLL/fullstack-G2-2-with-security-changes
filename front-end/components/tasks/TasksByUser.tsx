@@ -1,5 +1,5 @@
-import { Task, User } from "../../types";
-import { table } from "console";
+import { User } from "../../types";
+
 import React from "react";
 
 type Props = {

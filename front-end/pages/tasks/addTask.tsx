@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Task } from "../../types";
 import Head from "next/head";
 import Header from "../../components/header";
 import TaskForm from "../../components/tasks/TaskForm";
@@ -7,7 +5,6 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const addTask: React.FC = () => {
-  const [task, setTask] = useState<Task>();
   const { t } = useTranslation();
   return (
     <>

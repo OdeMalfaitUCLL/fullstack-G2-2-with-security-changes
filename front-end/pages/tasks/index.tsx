@@ -1,7 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { Task, User } from "../../types";
 import TaskService from "../../services/TaskService";
 import Header from "../../components/header";
 import TaskOverview from "../../components/tasks/TaskOverview";
@@ -11,6 +9,7 @@ import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { User } from "../../types";
 
 const Tasks: React.FC = () => {
   const [priority, setPriority] = useState<string>("all");
@@ -44,10 +43,6 @@ const Tasks: React.FC = () => {
     }
   };
   const { data, isLoading } = useSWR("tasks", getTasks);
-
-  // useEffect(() => {
-  //   getTasks();
-  // }, [priority]);
 
   useInterval(() => {
     if (!error) mutate("tasks", getTasks());

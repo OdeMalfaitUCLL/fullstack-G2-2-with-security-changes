@@ -5,13 +5,11 @@ import { Task } from "../../types";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Header from "../../components/header";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const EditTaskById: React.FC = () => {
   const router = useRouter();
   const [task, setTask] = useState<Task | null>(null);
-  const { t } = useTranslation();
   const { id } = router.query;
   const getTaskById = async () => {
     try {
