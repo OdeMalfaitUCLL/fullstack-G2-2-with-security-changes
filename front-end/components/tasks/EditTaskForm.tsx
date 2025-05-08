@@ -113,90 +113,90 @@ const EditTaskForm: React.FC<Props> = ({ task }) => {
     }
   };
   return (
-    <>
-      <form className="w-full max-w-md p-8 pt-1 rounded-lg mx-auto shadow flex flex-col items-stretch">
-        <button
-          className="p-1 m-0"
-          onClick={(e) => {
-            e.preventDefault();
-            router.push("/tasks");
-          }}
-        >
-          <img className="size-8" src="/images/exit-cross.png" />
-        </button>
-        <div className=" flex flex-col my-3">
-          <h4 className="text-center">{t("editTask.title")} </h4>
-          <h4 className="text-center">"{task.description}"</h4>
-          <label htmlFor="description">{t("editTask.description")} </label>
-          <input
-            className="border-2 border-gray-300 rounded"
-            type="text"
-            id="description"
-            name="description"
-            defaultValue={formData.description}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          {descriptionError && (
-            <>
-              <small className="text-[#b62626]">{descriptionError}</small>
-            </>
-          )}
-        </div>
-        <div className="flex flex-col my-3">
-          <label htmlFor="sidenote"> {t("editTask.sidenote")} </label>
-          <textarea
-            className="border-2 border-gray-300 rounded"
-            id="sidenote"
-            name="sidenote"
-            defaultValue={formData.sidenote}
-            value={sidenote}
-            onChange={(e) => setSidenote(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col my-3">
-          <label htmlFor="deadline">{t("editTask.deadline")} :</label>
-          <input
-            className=" border-2 border-gray-300 rounded"
-            type="datetime-local"
-            id="deadline"
-            name="deadline"
-            defaultValue={deadline.toString()}
-            value={deadline.toString()}
-            onChange={(e) => setDeadline(e.target.value)}
-          />
-          {deadlineError && (
-            <small className="text-[#b62626]">{deadlineError}</small>
-          )}
-        </div>
-        <div className="flex flex-col my-3">
-          <label htmlFor="priorityLevel">{t("editTask.priorityLevel")} </label>
-          <select
-            className=" border-2 border-gray-300 rounded"
-            id="priorityLevel"
-            name="levelName"
-            defaultValue={formData.priority.levelName}
-            value={priority.levelName}
-            onChange={handlePriorityChange}
-          >
-            <option value="">{t("editTask.priority.select")} </option>
-            <option value="urgent">{t("editTask.priority.urgent")}</option>
-            <option value="neutral">{t("editTask.priority.neutral")}</option>
-            <option value="basic">{t("editTask.priority.basic")}</option>
-          </select>
-        </div>
-        {priorityError && (
-          <small className="text-[#b62626]">{priorityError}</small>
+    <form className="w-full max-w-md p-8 pt-1 rounded-lg mx-auto shadow flex flex-col items-stretch">
+      <button
+        className="p-1 m-0"
+        onClick={(e) => {
+          e.preventDefault();
+          router.push("/tasks");
+        }}
+      >
+        <img
+          className="size-8"
+          src="/images/exit-cross.png"
+          alt="close window cross button"
+        />
+      </button>
+      <div className=" flex flex-col my-3">
+        <h4 className="text-center">{t("editTask.title")} </h4>
+        <h4 className="text-center">"{task.description}"</h4>
+        <label htmlFor="description">{t("editTask.description")} </label>
+        <input
+          className="border-2 border-gray-300 rounded"
+          type="text"
+          id="description"
+          name="description"
+          defaultValue={formData.description}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        {descriptionError && (
+          <small className="text-[#b62626]">{descriptionError}</small>
         )}
-        <button
-          className="p-2 rounded bg-[#474132] text-[#ffffff] mt-2"
-          type="button"
-          onClick={handleSubmit}
+      </div>
+      <div className="flex flex-col my-3">
+        <label htmlFor="sidenote"> {t("editTask.sidenote")} </label>
+        <textarea
+          className="border-2 border-gray-300 rounded"
+          id="sidenote"
+          name="sidenote"
+          defaultValue={formData.sidenote}
+          value={sidenote}
+          onChange={(e) => setSidenote(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col my-3">
+        <label htmlFor="deadline">{t("editTask.deadline")} :</label>
+        <input
+          className=" border-2 border-gray-300 rounded"
+          type="datetime-local"
+          id="deadline"
+          name="deadline"
+          defaultValue={deadline.toString()}
+          value={deadline.toString()}
+          onChange={(e) => setDeadline(e.target.value)}
+        />
+        {deadlineError && (
+          <small className="text-[#b62626]">{deadlineError}</small>
+        )}
+      </div>
+      <div className="flex flex-col my-3">
+        <label htmlFor="priorityLevel">{t("editTask.priorityLevel")} </label>
+        <select
+          className=" border-2 border-gray-300 rounded"
+          id="priorityLevel"
+          name="levelName"
+          defaultValue={formData.priority.levelName}
+          value={priority.levelName}
+          onChange={handlePriorityChange}
         >
-          {t("editTask.button")}{" "}
-        </button>
-      </form>
-    </>
+          <option value="">{t("editTask.priority.select")} </option>
+          <option value="urgent">{t("editTask.priority.urgent")}</option>
+          <option value="neutral">{t("editTask.priority.neutral")}</option>
+          <option value="basic">{t("editTask.priority.basic")}</option>
+        </select>
+      </div>
+      {priorityError && (
+        <small className="text-[#b62626]">{priorityError}</small>
+      )}
+      <button
+        className="p-2 rounded bg-[#474132] text-[#ffffff] mt-2"
+        type="button"
+        onClick={handleSubmit}
+      >
+        {t("editTask.button")}{" "}
+      </button>
+    </form>
   );
 };
 
